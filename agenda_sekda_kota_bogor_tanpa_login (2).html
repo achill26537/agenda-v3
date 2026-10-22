@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda Sekda Kota Bogor</title>
+<style>
+/* ===== CSS ASLI ANDA TETAP SAMA (copy-paste dari file lama) ===== */
+:root{--navy:#142b4a;--blue:#245da8;--gold:#d7ad55;--bg:#f4f6fa;--ink:#1e293b;--muted:#6b7280;--line:#e5eaf1;--white:#fff;--red:#c43e4d;--green:#16805d}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink)}
+button,input,textarea,select{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.brand-mark{width:54px;height:54px;background:#eaf0f9;color:var(--navy);border-radius:16px;display:grid;place-items:center;font-size:26px;margin-bottom:18px}
+h1,h2,h3,p{margin-top:0}h1{font-size:25px;margin-bottom:8px;color:var(--navy)}.sub{color:var(--muted);font-size:14px;line-height:1.5}
+.field{display:flex;flex-direction:column;gap:7px;margin:15px 0}.field label{font-size:13px;font-weight:700;color:#374151}.field input,.field textarea,.field select{width:100%;border:1px solid #d9e0ea;border-radius:10px;padding:11px 12px;background:white;outline:none;color:var(--ink)}.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--blue);box-shadow:0 0 0 3px #245da81a}.field textarea{min-height:90px;resize:vertical}
+.btn{border:0;border-radius:10px;padding:11px 15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:.15s}.btn-primary{background:var(--blue);color:white}.btn-primary:hover{background:#194c91}.btn-light{background:#edf2f8;color:var(--navy)}.btn-danger{background:#fff0f1;color:var(--red)}.btn-success{background:#e6f6ef;color:var(--green)}.btn-block{width:100%}
+.app{min-height:100vh}.topbar{height:auto;min-height:76px;background:var(--navy);color:white;padding:16px clamp(16px,4vw,48px);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.top-brand{display:flex;align-items:center;gap:12px}.mini-mark{width:42px;height:42px;border-radius:12px;background:#ffffff18;display:grid;place-items:center;font-size:21px}.topbar h1{color:white;font-size:18px;margin:0}.topbar p{margin:3px 0 0;color:#c7d5e8;font-size:12px}.top-actions{display:flex;align-items:center;gap:10px}.top-actions .btn{font-size:13px}
+main{max-width:1320px;margin:auto;padding:28px clamp(14px,3vw,36px) 50px}.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}.page-head h2{font-size:25px;margin-bottom:5px;color:var(--navy)}.page-head p{margin:0;color:var(--muted);font-size:14px}.layout{display:grid;grid-template-columns:minmax(300px,1.08fr) minmax(320px,1fr);gap:22px;align-items:start}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;box-shadow:0 5px 18px #182b4808;overflow:hidden}.panel-head{padding:20px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px}.panel-head h3{margin:0;color:var(--navy);font-size:16px}.panel-body{padding:20px 22px}
+.month-nav{display:flex;align-items:center;gap:8px}.month-nav button{border:1px solid var(--line);background:white;border-radius:9px;width:34px;height:34px;color:var(--navy);font-size:18px}.month-label{font-weight:800;color:var(--navy);min-width:140px;text-align:center}
+.calendar{width:100%;border-collapse:separate;border-spacing:5px;table-layout:fixed}.calendar th{font-size:11px;color:#7a8493;font-weight:700;padding:7px 0}.calendar td{height:48px;text-align:center;padding:0}.day{position:relative;width:100%;height:100%;border:0;border-radius:11px;background:#f7f9fc;color:#334155;font-weight:650}.day:hover{background:#eaf1fb}.day.muted{color:#c0c6d0;background:white}.day.selected{background:var(--blue);color:white;box-shadow:0 4px 10px #245da833}.day.today:not(.selected){outline:2px solid var(--gold);outline-offset:-2px}.day.has-event:after{content:"";position:absolute;bottom:5px;left:calc(50% - 3px);width:6px;height:6px;border-radius:50%;background:var(--gold)}.day.selected.has-event:after{background:white}
+.legend{display:flex;gap:14px;color:var(--muted);font-size:12px;margin:12px 4px 0}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-right:5px}.date-heading{font-size:18px;font-weight:800;color:var(--navy);margin-bottom:4px}.date-sub{font-size:13px;color:var(--muted);margin-bottom:16px}.agenda-list{display:flex;flex-direction:column;gap:12px}.agenda-item{border:1px solid var(--line);border-radius:13px;padding:15px;background:white}.agenda-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.time-pill{background:#eaf1fb;color:var(--blue);padding:5px 9px;border-radius:8px;font-size:12px;font-weight:800;white-space:nowrap}.agenda-title{font-size:14px;line-height:1.5;font-weight:750;margin:9px 0 8px;color:#243247;white-space:pre-wrap}.agenda-meta{font-size:12px;line-height:1.6;color:#647084;white-space:pre-wrap}.agenda-actions{display:flex;gap:6px}.icon-btn{border:0;background:#f0f3f8;border-radius:8px;padding:7px 9px;color:#526174;font-size:12px}.empty{border:1px dashed #d7deea;border-radius:13px;padding:28px 18px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6}.empty strong{display:block;color:var(--navy);font-size:15px;margin-bottom:5px}.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.detail-actions .btn{font-size:12px;padding:9px 11px}
+.form-panel{margin-top:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.span-2{grid-column:1/-1}.form-buttons{display:flex;gap:9px;flex-wrap:wrap;margin-top:8px}.hint{font-size:12px;color:var(--muted);margin-top:5px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#142b4a;color:white;padding:12px 18px;border-radius:12px;box-shadow:0 8px 28px #0003;font-size:13px;z-index:10;max-width:90vw;text-align:center}
+.modal-backdrop{position:fixed;inset:0;background:#0c1e35a8;display:grid;place-items:center;padding:18px;z-index:20}.modal{background:white;border-radius:18px;width:min(700px,100%);max-height:90vh;overflow:auto;box-shadow:0 25px 90px #0004}.modal textarea{min-height:340px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;line-height:1.55}.modal-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}.modal-head h3{margin:0;color:var(--navy)}.modal-content{padding:20px 22px}.modal-foot{display:flex;gap:9px;justify-content:flex-end;padding:0 22px 22px;flex-wrap:wrap}
+@media(max-width:820px){.layout{grid-template-columns:1fr}.topbar{align-items:flex-start}.page-head h2{font-size:22px}.panel-body{padding:16px}.panel-head{padding:16px}.day{border-radius:9px}.calendar{border-spacing:3px}.calendar td{height:43px}.month-label{min-width:120px}}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr}.span-2{grid-column:auto}.topbar{padding:14px}.top-actions{width:100%}.top-actions .btn{flex:1}.calendar th{font-size:10px}.calendar td{height:39px}.day{font-size:12px}.panel-head{flex-wrap:wrap}}
+.city-emblem{width:42px;height:52px;flex:0 0 42px;background:transparent;padding:0;border-radius:0;box-shadow:none;display:flex;align-items:center;justify-content:center}
+.city-emblem img{display:block;width:100%;height:100%;object-fit:contain}
+.hero-photo{position:relative;margin:0 0 22px;border-radius:18px;overflow:hidden;min-height:190px;background:#142b4a;box-shadow:0 8px 24px #182b4814}
+.hero-photo img{display:block;width:100%;height:clamp(190px,26vw,300px);object-fit:cover;object-position:center 44%}
+.hero-caption{position:absolute;inset:auto 0 0;padding:28px 22px 18px;background:linear-gradient(transparent,#0b1d36dd);color:#fff}
+.hero-caption strong{display:block;font-size:clamp(16px,2.4vw,22px);letter-spacing:.01em}
+.hero-caption span{display:block;font-size:12px;color:#e2eaf5;margin-top:4px}
+@media(max-width:520px){.hero-caption{padding:25px 14px 13px}.hero-photo img{height:190px}.city-emblem{width:36px;height:46px;flex-basis:36px}}
+</style>
+</head>
+<body>
+<noscript><div style="padding:18px;background:#fff0f1;color:#9f1239;text-align:center">JavaScript tidak aktif. Buka file ini di browser seperti Safari atau Chrome dan pastikan JavaScript diizinkan.</div></noscript>
+<div id="appView" class="app">
+  <!-- ===== HEADER & HERO TETAP SAMA (copy dari file lama Anda) ===== -->
+  <header class="topbar">
+    <div class="top-brand">
+      <div class="city-emblem" aria-label="Lambang resmi Kota Bogor">
+        <!-- ganti src dengan base64 lambang Anda jika ada -->
+        <img src="" alt="Lambang Kota Bogor">
+      </div>
+      <div>
+        <h1>Agenda Sekda Kota Bogor</h1>
+        <p>Data tersinkronisasi real-time (Firebase)</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="exportBtn" class="btn btn-light">Export JSON</button>
+      <button id="newAgendaTop" class="btn btn-primary">＋ Agenda baru</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero photo (opsional, copy dari file lama) -->
+    <section class="hero-photo" style="display:none">
+      <!-- isi jika ada foto -->
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Kalender kegiatan</h3>
+          <div class="month-nav">
+            <button id="prevMonth" aria-label="Bulan sebelumnya">‹</button>
+            <div id="monthLabel" class="month-label"></div>
+            <button id="nextMonth" aria-label="Bulan berikutnya">›</button>
+          </div>
+        </div>
+        <div class="panel-body">
+          <table class="calendar" aria-label="Kalender">
+            <thead><tr><th>MIN</th><th>SEN</th><th>SEL</th><th>RAB</th><th>KAM</th><th>JUM</th><th>SAB</th></tr></thead>
+            <tbody id="calendarBody"></tbody>
+          </table>
+          <div class="legend"><span><i class="dot"></i>Ada agenda</span><span>▢ Tanggal hari ini</span></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h3>Agenda tanggal terpilih</h3>
+          <span id="agendaCount" class="sub">0 kegiatan</span>
+        </div>
+        <div class="panel-body">
+          <div id="selectedDateHeading" class="date-heading"></div>
+          <div class="date-sub">Daftar kegiatan pada tanggal yang dipilih</div>
+          <div class="detail-actions">
+            <button id="copyDayBtn" class="btn btn-success">▣ Salin agenda hari ini</button>
+            <button id="addAgendaBtn" class="btn btn-primary">＋ Tambah agenda</button>
+          </div>
+          <div id="agendaList" class="agenda-list"></div>
+        </div>
+      </section>
+    </div>
+
+    <section id="formPanel" class="panel form-panel hidden">
+      <div class="panel-head">
+        <h3 id="formTitle">Tambah agenda</h3>
+        <button id="closeForm" class="icon-btn">Tutup ✕</button>
+      </div>
+      <div class="panel-body">
+        <form id="agendaForm">
+          <input type="hidden" id="editId">
+          <div class="form-grid">
+            <div class="field"><label for="eventDate">Tanggal kegiatan *</label><input type="date" id="eventDate" required></div>
+            <div class="field"><label for="eventTime">Jam kegiatan *</label><input type="time" id="eventTime" required></div>
+            <div class="field span-2"><label for="eventName">Nama kegiatan *</label><textarea id="eventName" required placeholder="Contoh: Menghadiri rapat koordinasi..."></textarea></div>
+            <div class="field span-2"><label for="eventPlace">Tempat</label><input id="eventPlace" placeholder="Nama gedung, alamat, atau lokasi"></div>
+            <div class="field span-2"><label for="eventGuests">Pendamping / undangan</label><textarea id="eventGuests" placeholder="Satu nama per baris"></textarea><div class="hint">Tulis satu pendamping atau undangan per baris.</div></div>
+            <div class="field span-2"><label for="eventDress">Pakaian / catatan tambahan</label><input id="eventDress" placeholder="Contoh: Pakaian dinas harian"></div>
+          </div>
+          <div class="form-buttons">
+            <button type="submit" class="btn btn-primary">Simpan agenda</button>
+            <button type="button" id="cancelForm" class="btn btn-light">Batal</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <p class="sub" style="margin:22px 2px 0;font-size:12px">
+      Data disimpan di Firebase Firestore secara real-time. Semua orang yang membuka link ini akan melihat data yang sama.
+    </p>
+  </main>
+</div>
+
+<div id="copyModal" class="modal-backdrop hidden">
+  <div class="modal">
+    <div class="modal-head"><h3>Salin agenda harian</h3><button id="closeCopy" class="icon-btn">Tutup ✕</button></div>
+    <div class="modal-content">
+      <p class="sub">Teks ini sudah diformat. Tekan “Salin teks” untuk menyalinnya lalu tempel ke WhatsApp.</p>
+      <textarea id="copyText" class="field" style="width:100%;min-height:340px" aria-label="Teks agenda"></textarea>
+    </div>
+    <div class="modal-foot">
+      <button id="copyTextBtn" class="btn btn-primary">▣ Salin teks</button>
+      <button id="doneCopy" class="btn btn-light">Selesai</button>
+    </div>
+  </div>
+</div>
+<div id="toast" class="toast hidden" role="status"></div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+
+<script>
+(function(){
+  // ========== GANTI DENGAN CONFIG FIREBASE ANDA ==========
+const firebaseConfig = {
+  apiKey: "AIza...",
+  authDomain: "nama-project.firebaseapp.com",
+  projectId: "nama-project",
+  storageBucket: "nama-project.appspot.com",
+  messagingSenderId: "123456789",
+  appId: "1:123456789:web:abcdef"
+};
+  // =======================================================
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const agendasRef = db.collection('agendas');
+
+  const $ = id => document.getElementById(id);
+  const monthNames = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  const dayNames = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const today = new Date();
+  let selectedDate = fmtDate(today);
+  let shownYear = today.getFullYear();
+  let shownMonth = today.getMonth();
+  let agendas = [];
+  let toastTimer;
+
+  function fmtDate(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+  function parseDate(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+  function dateLong(s){ const d=parseDate(s); return dayNames[d.getDay()]+', '+d.getDate()+' '+monthNames[d.getMonth()]+' '+d.getFullYear(); }
+  function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function showToast(msg){ $('toast').textContent=msg; $('toast').classList.remove('hidden'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),2600); }
+  function sorted(items){ return items.slice().sort((a,b)=>a.time.localeCompare(b.time)); }
+
+  // ===== LOAD REAL-TIME DARI FIRESTORE =====
+  function startRealtime(){
+    agendasRef.orderBy('date').orderBy('time').onSnapshot(snap => {
+      agendas = [];
+      snap.forEach(doc => {
+        const data = doc.data();
+        agendas.push({ id: doc.id, ...data });
+      });
+      renderAll();
+    }, err => {
+      console.error(err);
+      showToast('Gagal terhubung ke Firebase. Cek config & rules.');
+    });
+  }
+
+  // ===== SIMPAN / UPDATE / HAPUS =====
+  async function saveAgenda(item){
+    try{
+      if(item.id && !item.id.startsWith('temp-')){
+        await agendasRef.doc(item.id).set(item, { merge: true });
+      } else {
+        const { id, ...data } = item;
+        const ref = await agendasRef.add(data);
+        // id baru akan datang dari onSnapshot
+      }
+      showToast(item.id ? 'Agenda berhasil diperbarui.' : 'Agenda berhasil ditambahkan.');
+    }catch(e){
+      console.error(e);
+      showToast('Gagal menyimpan. Cek koneksi & rules Firebase.');
+    }
+  }
+
+  async function deleteAgenda(id){
+    const a = agendas.find(x => x.id === id);
+    if(!a) return;
+    if(!confirm('Hapus agenda "'+a.name+'"?')) return;
+    try{
+      await agendasRef.doc(id).delete();
+      showToast('Agenda berhasil dihapus.');
+    }catch(e){
+      showToast('Gagal menghapus.');
+    }
+  }
+
+  // ===== RENDER (sama seperti sebelumnya) =====
+  function renderCalendar(){
+    $('monthLabel').textContent = monthNames[shownMonth]+' '+shownYear;
+    const first = new Date(shownYear,shownMonth,1);
+    const start = new Date(shownYear,shownMonth,1-first.getDay());
+    let rows = '';
+    for(let w=0;w<6;w++){
+      let cells = '';
+      for(let j=0;j<7;j++){
+        let d = new Date(start);
+        d.setDate(start.getDate()+w*7+j);
+        let s = fmtDate(d);
+        let inMonth = d.getMonth()===shownMonth;
+        let has = agendas.some(a => a.date===s);
+        let cl = ['day', !inMonth?'muted':'', s===selectedDate?'selected':'', s===fmtDate(today)?'today':'', has?'has-event':''].filter(Boolean).join(' ');
+        cells += `<td><button class="${cl}" data-date="${s}" aria-label="${esc(dateLong(s))}">${d.getDate()}</button></td>`;
+      }
+      rows += '<tr>'+cells+'</tr>';
+    }
+    $('calendarBody').innerHTML = rows;
+    $('calendarBody').querySelectorAll('button[data-date]').forEach(b => {
+      b.addEventListener('click', () => {
+        selectedDate = b.dataset.date;
+        const d = parseDate(selectedDate);
+        shownYear = d.getFullYear();
+        shownMonth = d.getMonth();
+        renderAll();
+      });
+    });
+  }
+
+  function renderAgendas(){
+    $('selectedDateHeading').textContent = dateLong(selectedDate);
+    const list = sorted(agendas.filter(a => a.date === selectedDate));
+    $('agendaCount').textContent = list.length + ' kegiatan';
+    if(!list.length){
+      $('agendaList').innerHTML = '<div class="empty"><strong>Belum ada agenda</strong>Belum ada kegiatan pada tanggal ini.<br>Tekan “Tambah agenda” untuk mulai menyusun jadwal.</div>';
+      return;
+    }
+    $('agendaList').innerHTML = list.map(a => `
+      <article class="agenda-item">
+        <div class="agenda-top">
+          <span class="time-pill">${esc(a.time)}</span>
+          <div class="agenda-actions">
+            <button class="icon-btn edit-btn" data-id="${esc(a.id)}">Edit</button>
+            <button class="icon-btn delete-btn" data-id="${esc(a.id)}" title="Hapus agenda">Hapus</button>
+          </div>
+        </div>
+        <div class="agenda-title">${esc(a.name)}</div>
+        ${a.place ? `<div class="agenda-meta">⌖ ${esc(a.place)}</div>` : ''}
+        ${a.guests ? `<div class="agenda-meta" style="margin-top:5px">Undangan: ${esc(a.guests).replace(/\n/g,' · ')}</div>` : ''}
+        ${a.dress ? `<div class="agenda-meta" style="margin-top:5px">Catatan: ${esc(a.dress)}</div>` : ''}
+      </article>
+    `).join('');
+    $('agendaList').querySelectorAll('.edit-btn').forEach(b => b.addEventListener('click', () => openForm(b.dataset.id)));
+    $('agendaList').querySelectorAll('.delete-btn').forEach(b => b.addEventListener('click', () => deleteAgenda(b.dataset.id)));
+  }
+
+  function renderAll(){ renderCalendar(); renderAgendas(); }
+
+  function openForm(id){
+    $('formPanel').classList.remove('hidden');
+    $('formTitle').textContent = id ? 'Edit agenda' : 'Tambah agenda';
+    $('editId').value = id || '';
+    const a = id ? agendas.find(x => x.id === id) : null;
+    $('eventDate').value = a ? a.date : selectedDate;
+    $('eventTime').value = a ? a.time : '';
+    $('eventName').value = a ? a.name : '';
+    $('eventPlace').value = a ? a.place || '' : '';
+    $('eventGuests').value = a ? a.guests || '' : '';
+    $('eventDress').value = a ? a.dress || '' : '';
+    $('formPanel').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function closeForm(){
+    $('formPanel').classList.add('hidden');
+    $('agendaForm').reset();
+    $('editId').value = '';
+  }
+
+  function makeText(){
+    const list = sorted(agendas.filter(a => a.date === selectedDate));
+    let out = '*Jadwal Sekda Kota Bogor*\n' + dateLong(selectedDate) + '\n';
+    if(!list.length) return out + '\nBelum ada agenda.';
+    list.forEach((a,i) => {
+      out += '\n\n'+(i+1)+'. *'+a.time.replace(':','.')+'*\n'+a.name;
+      if(a.place) out += '\nTempat : '+a.place;
+      if(a.guests) a.guests.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).forEach(g => out += '\n- '+g);
+      if(a.dress) out += '\n*Pakaian : '+a.dress+'*';
+    });
+    return out;
+  }
+
+  async function copyText(){
+    const txt = $('copyText').value;
+    try{
+      await navigator.clipboard.writeText(txt);
+      showToast('Teks agenda berhasil disalin.');
+    }catch(e){
+      $('copyText').focus(); $('copyText').select();
+      try{ document.execCommand('copy'); showToast('Teks agenda disalin.'); }
+      catch(err){ showToast('Pilih teks lalu salin secara manual.'); }
+    }
+  }
+
+  // Event listeners
+  $('prevMonth').addEventListener('click', () => { shownMonth--; if(shownMonth<0){shownMonth=11;shownYear--;} renderCalendar(); });
+  $('nextMonth').addEventListener('click', () => { shownMonth++; if(shownMonth>11){shownMonth=0;shownYear++;} renderCalendar(); });
+  $('addAgendaBtn').addEventListener('click', () => openForm());
+  $('newAgendaTop').addEventListener('click', () => openForm());
+  $('closeForm').addEventListener('click', closeForm);
+  $('cancelForm').addEventListener('click', closeForm);
+
+  $('agendaForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const id = $('editId').value;
+    const item = {
+      id: id || null,
+      date: $('eventDate').value,
+      time: $('eventTime').value,
+      name: $('eventName').value.trim(),
+      place: $('eventPlace').value.trim(),
+      guests: $('eventGuests').value.trim(),
+      dress: $('eventDress').value.trim()
+    };
+    selectedDate = item.date;
+    const d = parseDate(selectedDate);
+    shownYear = d.getFullYear();
+    shownMonth = d.getMonth();
+    closeForm();
+    saveAgenda(item);
+  });
+
+  $('copyDayBtn').addEventListener('click', () => {
+    $('copyText').value = makeText();
+    $('copyModal').classList.remove('hidden');
+  });
+  $('closeCopy').addEventListener('click', () => $('copyModal').classList.add('hidden'));
+  $('doneCopy').addEventListener('click', () => $('copyModal').classList.add('hidden'));
+  $('copyTextBtn').addEventListener('click', copyText);
+  $('copyModal').addEventListener('click', e => { if(e.target === $('copyModal')) $('copyModal').classList.add('hidden'); });
+
+  $('exportBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(agendas, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'agenda-sekda-kota-bogor.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('Data agenda diekspor.');
+  });
+
+  // Mulai real-time listener
+  startRealtime();
+})();
+</script>
+</body>
+</html>
